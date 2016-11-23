@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    16:30:48 11/11/2016 
+-- Create Date:    23:40:26 11/21/2016 
 -- Design Name: 
--- Module Name:    CPU - Behavioral 
+-- Module Name:    PC - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -19,7 +19,6 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --use IEEE.NUMERIC_STD.ALL;
@@ -29,13 +28,31 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity CPU is
-end CPU;
+entity IF_PC is
+	Port(
+		PC_in : in  Int16;
+		Instruction_out : out Int16;
+		PC_out : out  Int16;
+		
+		clk : in  STD_LOGIC;
+		rst : in  STD_LOGIC;
+		WriteIn : in  STD_LOGIC
+	);
+end IF_PC;
 
-architecture Behavioral of CPU is
+architecture Behavioral of IF_PC is
 
 begin
-
-
+	process (rst, clk)
+	begin
+		if (rst = '0') then 
+			PC_out <= Int16_Zero;
+			PC_inc_out <= Int16_Zero;
+		elsif (clk'event and clk = '1') then
+			if (WriteIn = '1') then
+				PC_out <= PC_in;
+				PC_inc_out <= PC_out + 1;
+			end if;
+		end if;
+	end process;
 end Behavioral;
-
