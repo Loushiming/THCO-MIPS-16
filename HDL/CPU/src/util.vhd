@@ -33,6 +33,9 @@ package util is
 
 ----------------------------------------------------------------------------------
 -- 全局常量
+constant RST_EN : std_logic := '0';
+constant RST_DIS : std_logic := '1';
+
 constant WRITE_EN : std_logic := '0';
 constant WRITE_DIS : std_logic := '1';
 
@@ -41,6 +44,9 @@ constant READ_DIS : std_logic := '1';
 
 constant CHIP_EN : std_logic := '0';
 constant CHIP_DIS : std_logic := '1';
+
+
+constant ZERO_16 : std_logic_vector(15 downto 0) := "0000000000000000";
 
 ----------------------------------------------------------------------------------
 -- 自定义 type
